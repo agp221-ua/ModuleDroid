@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ModuleDroid"
 include(":app")
- 
+include(":ModuleDroid")

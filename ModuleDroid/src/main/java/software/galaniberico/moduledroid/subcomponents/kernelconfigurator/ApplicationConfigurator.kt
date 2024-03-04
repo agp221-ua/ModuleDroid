@@ -1,5 +1,6 @@
 package software.galaniberico.moduledroid.subcomponents.kernelconfigurator
 
+import android.view.View
 import software.galaniberico.moduledroid.subcomponents.activitylifecycle.ActivityLifecycle
 
 /**
@@ -24,7 +25,6 @@ object ApplicationConfigurator {
             it.onApplicationCreate(app)
         }
     }
-
 }
 
 /**

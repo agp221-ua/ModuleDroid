@@ -1,4 +1,17 @@
 package software.galaniberico.moduledroid.subcomponents.kernelconfigurator
 
-class ModuleDroidApplication {
+import android.app.Application
+
+open class ModuleDroidApplication : Application() {
+        override fun onCreate() {
+            super.onCreate()
+
+            ApplicationConfigurator.configure(this)
+
+
+
+        }
+
+
+
 }

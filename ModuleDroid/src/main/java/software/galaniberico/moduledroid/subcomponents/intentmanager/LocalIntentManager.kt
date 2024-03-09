@@ -7,7 +7,7 @@ import software.galaniberico.moduledroid.internalbus.InternalBus
 private const val CURRENT_ACTIVITY = "CURRENT_ACTIVITY"
 
 private const val ID_PREFIX = "###ModuleDroid_IntentManager@"
-private const val ID_KEY = "###ModuleDroid_IntentManager@ID###"
+internal const val ID_KEY = "###ModuleDroid_IntentManager@ID###"
 
 object LocalIntentManager {
     private var nextID: Int = 0

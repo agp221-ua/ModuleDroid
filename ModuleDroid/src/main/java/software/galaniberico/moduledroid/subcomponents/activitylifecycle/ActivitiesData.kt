@@ -7,5 +7,7 @@ import android.app.Activity
 object ActivitiesData {
     internal var currentActivity: Activity? = null
 
-
+    fun getCurrentActivity(): Activity? {
+        return currentActivity
+    }
 }

@@ -21,6 +21,12 @@ class MDActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityResumed(p0: Activity) {
         ActivityLifecycleSubscriptionManager.onResumeSuscriptions.forEach{it(p0)}
+
+    }
+
+    override fun onActivityPostResumed(activity: Activity) {
+        super.onActivityPostResumed(activity)
+        ActivitiesData.currentActivity = activity
     }
 
     override fun onActivityPaused(p0: Activity) {

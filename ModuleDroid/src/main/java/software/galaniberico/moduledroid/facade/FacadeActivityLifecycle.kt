@@ -1,5 +1,5 @@
 package software.galaniberico.moduledroid.facade
 
-class FacadeActivityLifecycle {
+object FacadeActivityLifecycle {
 
 }

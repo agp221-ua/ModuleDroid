@@ -1,7 +1,6 @@
 package software.galaniberico.moduledroid.subcomponents.kernelconfigurator
 
-import android.view.View
-import software.galaniberico.moduledroid.subcomponents.activitylifecycle.ActivityLifecycle
+import software.galaniberico.moduledroid.subcomponents.activitylifecycle.ActivityLifecycleConfigurator
 
 /**
  * This class is responsible of implementing all necessary methods to correctly configure the
@@ -13,7 +12,7 @@ object ApplicationConfigurator {
      * *AppConfigurator* interface.
      */
     private val subcomponents: List<AppConfigurator> = listOf(
-        ActivityLifecycle
+        ActivityLifecycleConfigurator
     )
 
     /**

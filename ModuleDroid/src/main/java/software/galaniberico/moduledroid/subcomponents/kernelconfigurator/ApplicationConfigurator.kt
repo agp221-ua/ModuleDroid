@@ -39,23 +39,23 @@ object ApplicationConfigurator {
     private fun getConfigurablePlugins(app: ModuleDroidApplication) {
         val stringArray = getMetaDataString("moduledroid_plugins", app)
         for (s in stringArray)
-        try {
-            val pluginClass = Class.forName(s)
-            if (PluginConfigurator::class.java.isAssignableFrom(pluginClass)) {
-                val pluginInstance = pluginClass
-                    .getDeclaredConstructor().newInstance() as PluginConfigurator
+            try {
+                val pluginClass = Class.forName(s)
+                if (PluginConfigurator::class.java.isAssignableFrom(pluginClass)) {
+                    val pluginInstance = pluginClass
+                        .getDeclaredConstructor().newInstance() as PluginConfigurator
 
-                pluginInstance.configure(app)
-            } else {
-                throw UnsupportedOperationException("The class $s does not implement the ModuleDroid interface called 'PluginConfigurator'. Have you written the class path correctly? Maybe it is not the class you should add in 'moduledroid_plugins' section")
+                    pluginInstance.configure(app)
+                } else {
+                    throw UnsupportedOperationException("The class $s does not implement the ModuleDroid interface called 'PluginConfigurator'. Have you written the class path correctly? Maybe it is not the class you should add in 'moduledroid_plugins' section")
+                }
+            } catch (e: ClassNotFoundException) {
+                throw ClassNotFoundException("The class $s can not be found. Have you written the class path correctly? Maybe have you not imported correctly the library?")
+            } catch (e: InstantiationException) {
+                throw InstantiationException("The class $s could not be instantiated. Revise the plugin's library import. If the problem persists, try contacting the plugin author")
+            } catch (e: IllegalAccessException) {
+                throw IllegalAccessException("The class $s could not be accessed. Revise the plugin's library import. If the problem persists, try contacting the plugin author")
             }
-        } catch (e: ClassNotFoundException) {
-            throw ClassNotFoundException("The class $s can not be found. Have you written the class path correctly? Maybe have you not imported correctly the library?")
-        } catch (e: InstantiationException) {
-            throw InstantiationException("The class $s could not be instantiated. Revise the plugin's library import. If the problem persists, try contacting the plugin author")
-        } catch (e: IllegalAccessException) {
-            throw IllegalAccessException("The class $s could not be accessed. Revise the plugin's library import. If the problem persists, try contacting the plugin author")
-        }
     }
 
     private fun getMetaDataString(key: String, app: ModuleDroidApplication): List<String> {

@@ -34,7 +34,17 @@ android {
     }
 
 }
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.agp221-ua"
+            artifactId = "ModuleDroid"
+            version = "0.1.2.3"
 
+//            from(components["java"])
+        }
+    }
+}
 dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")

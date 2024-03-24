@@ -3,17 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "com.github.agp221-ua"
-            artifactId = "ModuleDroid"
-            version = "0.1.2.9"
 
-        }
-    }
-}
 android {
+
     namespace = "software.galaniberico.moduledroid"
     compileSdk = 34
 
@@ -52,4 +44,17 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+
+
+afterEvaluate {
+    android.libraryVariants.forEach { variant ->
+        publishing.publications.create(variant.name, MavenPublication::class) {
+            from(components.findByName(variant.name))
+            groupId = "com.github.agp221-ua"
+            artifactId = "ModuleDroid"
+            version = "0.1.3"
+        }
+    }
 }

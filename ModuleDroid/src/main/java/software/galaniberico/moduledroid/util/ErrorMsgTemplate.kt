@@ -16,6 +16,6 @@ enum class ErrorMsgTemplate(val string: String, val count: Int){
 
     fun with(vararg strings: String): String {
         if (strings.size != count) throw IllegalArgumentException("Exactly $count values are expected as arguments.")
-        return String.format(string, strings)
+        return String.format(string, *strings)
     }
 }

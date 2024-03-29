@@ -54,7 +54,7 @@ afterEvaluate {
             from(components.findByName(variant.name))
             groupId = "com.local.agp221-ua"
             artifactId = "ModuleDroid"
-            version = "0.1.3.1"
+            version = "0.1.3.3"
         }
     }
 }

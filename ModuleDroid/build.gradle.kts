@@ -14,7 +14,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        version = "0.1.2.9"
+        version = "0.1.3.3"
     }
 
     buildTypes {
@@ -52,9 +52,9 @@ afterEvaluate {
     android.libraryVariants.forEach { variant ->
         publishing.publications.create(variant.name, MavenPublication::class) {
             from(components.findByName(variant.name))
-            groupId = "com.github.agp221-ua"
+            groupId = "com.local.agp221-ua"
             artifactId = "ModuleDroid"
-            version = "0.1.3"
+            version = "0.1.3.1"
         }
     }
 }

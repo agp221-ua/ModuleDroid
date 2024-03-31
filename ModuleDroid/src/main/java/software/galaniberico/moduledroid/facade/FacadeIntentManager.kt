@@ -4,7 +4,7 @@ import android.app.Activity
 import software.galaniberico.moduledroid.subcomponents.intentmanager.ID_KEY
 import software.galaniberico.moduledroid.subcomponents.intentmanager.LocalIntentManager
 
-object FacadeIntentManager {
+internal object FacadeIntentManager {
     fun getIdKey(): String{
         return ID_KEY
     }

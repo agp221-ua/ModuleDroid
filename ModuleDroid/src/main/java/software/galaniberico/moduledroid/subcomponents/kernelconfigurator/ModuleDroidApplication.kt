@@ -11,7 +11,4 @@ open class ModuleDroidApplication : Application() {
 
 
         }
-
-
-
 }

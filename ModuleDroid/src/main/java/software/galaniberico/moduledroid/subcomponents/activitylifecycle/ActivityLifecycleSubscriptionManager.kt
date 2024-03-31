@@ -6,7 +6,7 @@ import android.os.Bundle
 /**
  * Manages subscriptions to various lifecycle events of Android activities.
  */
-object ActivityLifecycleSubscriptionManager {
+internal object ActivityLifecycleSubscriptionManager {
 
     internal val onCreateSuscriptions = mutableListOf<(Activity, Bundle?) -> Unit>()
 

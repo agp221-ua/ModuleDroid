@@ -4,7 +4,7 @@ import software.galaniberico.moduledroid.internalbus.InternalBus
 import software.galaniberico.moduledroid.subcomponents.kernelconfigurator.AppConfigurator
 import software.galaniberico.moduledroid.subcomponents.kernelconfigurator.ModuleDroidApplication
 
-object ActivityLifecycleConfigurator : AppConfigurator {
+internal object ActivityLifecycleConfigurator : AppConfigurator {
     override fun onApplicationCreate(app: ModuleDroidApplication) {
         app.registerActivityLifecycleCallbacks(MDActivityLifecycleCallbacks())
 

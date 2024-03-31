@@ -9,7 +9,7 @@ private const val CURRENT_ACTIVITY = "CURRENT_ACTIVITY"
 private const val ID_PREFIX = "###ModuleDroid_IntentManager@"
 internal const val ID_KEY = "###ModuleDroid_IntentManager@ID###"
 
-object LocalIntentManager {
+internal object LocalIntentManager {
     private var nextID: Int = 0
     private var nextDefaultValue: Int = 10000  //Start with 10000 to try to avoid collisions with more common values as 0,1,2...
 

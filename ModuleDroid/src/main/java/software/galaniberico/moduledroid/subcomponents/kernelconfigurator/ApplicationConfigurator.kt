@@ -12,7 +12,7 @@ import java.io.InvalidClassException
  * This class is responsible of implementing all necessary methods to correctly configure the
  * *ModuleDroidApplication*.
  */
-object ApplicationConfigurator {
+internal object ApplicationConfigurator {
     /**
      * List of subcomponents that need to configure something in the application. They must implement
      * *AppConfigurator* interface.
@@ -76,7 +76,7 @@ object ApplicationConfigurator {
 /**
 This interface represents a class that configure the Android Application.
  */
-interface AppConfigurator {
+internal interface AppConfigurator {
     /**
      * When the Android application is created, this method is called.
      * The implementing class must be registered in *ApplicationConfigurator.subcomponents* list.

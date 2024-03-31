@@ -1,6 +1,6 @@
 package software.galaniberico.moduledroid.internalbus
 
-object InternalBus {
+internal object InternalBus {
     val dataProviders = mutableMapOf<String, () -> Any?>()
     inline fun <reified T : Any?> get(id: String): T {
         if (!dataProviders.containsKey(id)) throw NoSuchElementException("InternalBus: The key, ${id}, has no data provider associated. Check if you have set one before accessing it.")

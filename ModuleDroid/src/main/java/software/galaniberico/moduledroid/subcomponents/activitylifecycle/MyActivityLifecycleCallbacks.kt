@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 
-class MDActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+internal class MDActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         ActivityLifecycleSubscriptionManager.onCreateSuscriptions.forEach{it(activity, savedInstanceState)}
         //TODO must add an id here o maybe compare it from where is compared, this is, inside 'it', if

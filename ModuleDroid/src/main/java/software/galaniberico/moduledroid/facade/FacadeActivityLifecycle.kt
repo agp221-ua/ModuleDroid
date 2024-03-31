@@ -5,7 +5,7 @@ import android.os.Bundle
 import software.galaniberico.moduledroid.subcomponents.activitylifecycle.ActivitiesData
 import software.galaniberico.moduledroid.subcomponents.activitylifecycle.ActivityLifecycleSubscriptionManager
 
-object FacadeActivityLifecycle {
+internal object FacadeActivityLifecycle {
     fun getCurrentActivity(): Activity? {
         return ActivitiesData.getCurrentActivity()
     }

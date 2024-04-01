@@ -19,4 +19,16 @@ internal object FacadeIntentManager {
             LocalIntentManager.startActivityForResult(target, id)
         }
     }
+
+    fun startActivity(activity: Activity, target: Class<out Activity>, id: String? = null): String {
+        return LocalIntentManager.startActivity(activity, target, id)
+    }
+
+    fun startActivityForResult(activity: Activity, target: Class<out Activity>, id: String? = null, requestCode: Int? = null): Pair<String, Int>{
+        return if (requestCode != null) {
+            LocalIntentManager.startActivityForResult(activity, target,id, requestCode)
+        } else {
+            LocalIntentManager.startActivityForResult(activity, target, id)
+        }
+    }
 }

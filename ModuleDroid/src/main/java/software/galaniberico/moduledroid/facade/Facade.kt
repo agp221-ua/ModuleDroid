@@ -209,6 +209,14 @@ object Facade {
         return FacadeIntentManager.startActivityForResult(target, id, requestCode)
     }
 
+    fun startActivity(activity: Activity, target: Class<out Activity>, id: String? = null): String {
+        return FacadeIntentManager.startActivity(activity, target, id)
+    }
+
+    fun startActivityForResult(activity: Activity, target: Class<out Activity>, requestCode: Int? = null, id: String? = null): Pair<String, Int>{
+        return FacadeIntentManager.startActivityForResult(activity, target, id, requestCode)
+    }
+
     fun getIdKey(): String {
         return FacadeIntentManager.getIdKey()
     }

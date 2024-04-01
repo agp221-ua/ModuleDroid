@@ -22,8 +22,24 @@ internal object LocalIntentManager {
         return _id
     }
 
+    fun startActivity(activity: Activity, target: Class<out Activity>, id: String? = null): String {
+        val i = Intent(activity, target)
+        val _id = id ?: generateDefaultId()
+        i.putExtra(ID_KEY, _id)
+        activity.startActivity(i)
+        return _id
+    }
+
     fun startActivityForResult(target: Class<out Activity>, id: String? = null, requestCode: Int = nextDefaultValue++): Pair<String, Int> {
         val activity: Activity = InternalBus.get(CURRENT_ACTIVITY)
+        val i = Intent(activity, target)
+        val _id = id ?: generateDefaultId()
+        i.putExtra(ID_KEY, _id)
+        activity.startActivityForResult(i, requestCode)
+        return Pair(_id, requestCode)
+    }
+
+    fun startActivityForResult(activity: Activity, target: Class<out Activity>, id: String? = null, requestCode: Int = nextDefaultValue++): Pair<String, Int> {
         val i = Intent(activity, target)
         val _id = id ?: generateDefaultId()
         i.putExtra(ID_KEY, _id)

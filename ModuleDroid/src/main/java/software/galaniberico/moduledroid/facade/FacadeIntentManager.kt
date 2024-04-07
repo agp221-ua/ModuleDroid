@@ -5,9 +5,6 @@ import software.galaniberico.moduledroid.subcomponents.intentmanager.ID_KEY
 import software.galaniberico.moduledroid.subcomponents.intentmanager.LocalIntentManager
 
 internal object FacadeIntentManager {
-    fun getIdKey(): String{
-        return ID_KEY
-    }
     fun startActivity(target: Class<out Activity>, id: String? = null): String {
         return LocalIntentManager.startActivity(target, id)
     }
@@ -30,5 +27,17 @@ internal object FacadeIntentManager {
         } else {
             LocalIntentManager.startActivityForResult(activity, target, id)
         }
+    }
+
+    fun provideId(activity: Activity) : String {
+        return LocalIntentManager.provideId(activity)
+    }
+
+    fun getId(activity: Activity) : String? {
+        return LocalIntentManager.getId(activity)
+    }
+
+    fun getIdOrProvideOne(activity: Activity) : String {
+        return LocalIntentManager.getIdOrProvideOne(activity)
     }
 }

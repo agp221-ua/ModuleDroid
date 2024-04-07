@@ -14,7 +14,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        version = "0.1.3.6"
+        version = "0.1.3.8"
     }
 
     buildTypes {
@@ -54,7 +54,7 @@ afterEvaluate {
             from(components.findByName(variant.name))
             groupId = "com.local.agp221-ua"
             artifactId = "ModuleDroid"
-            version = "0.1.3.6"
+            version = "0.1.3.8"
         }
     }
 }

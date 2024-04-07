@@ -2,6 +2,7 @@ package software.galaniberico.moduledroid.facade
 
 import android.app.Activity
 import android.os.Bundle
+import software.galaniberico.moduledroid.subcomponents.intentmanager.LocalIntentManager
 
 object Facade {
 
@@ -217,7 +218,15 @@ object Facade {
         return FacadeIntentManager.startActivityForResult(activity, target, id, requestCode)
     }
 
-    fun getIdKey(): String {
-        return FacadeIntentManager.getIdKey()
+    fun provideId(activity: Activity) : String {
+        return FacadeIntentManager.provideId(activity)
+    }
+
+    fun getId(activity: Activity) : String? {
+        return FacadeIntentManager.getId(activity)
+    }
+
+    fun getIdOrProvideOne(activity: Activity) : String {
+        return FacadeIntentManager.getIdOrProvideOne(activity)
     }
 }

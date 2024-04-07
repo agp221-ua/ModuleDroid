@@ -120,7 +120,7 @@ internal object FacadeActivityLifecycle {
     }
 
     private fun isIdMatch(activity: Activity, id: String): Boolean {
-        return id == activity.intent.getStringExtra(FacadeIntentManager.getIdKey())
+        return id == FacadeIntentManager.getId(activity)
     }
 
     fun addOnCreateSubscription(

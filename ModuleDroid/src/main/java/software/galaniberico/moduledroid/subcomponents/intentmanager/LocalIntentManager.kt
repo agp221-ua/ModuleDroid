@@ -51,4 +51,18 @@ internal object LocalIntentManager {
         return ID_PREFIX + nextID++
     }
 
+    fun provideId(activity: Activity) : String {
+        val id = generateDefaultId()
+        activity.intent.putExtra(ID_KEY, id)
+        return id
+    }
+
+    fun getId(activity: Activity) : String? {
+        return activity.intent.getStringExtra(ID_KEY)
+    }
+
+    fun getIdOrProvideOne(activity: Activity) : String {
+        return getId(activity) ?: provideId(activity)
+    }
+
 }

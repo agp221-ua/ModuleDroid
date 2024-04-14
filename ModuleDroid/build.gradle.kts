@@ -11,10 +11,9 @@ android {
 
     defaultConfig {
         minSdk = 27
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        version = "0.1.3.8"
+        version = "0.1.4"
     }
 
     buildTypes {
@@ -54,7 +53,7 @@ afterEvaluate {
             from(components.findByName(variant.name))
             groupId = "com.local.agp221-ua"
             artifactId = "ModuleDroid"
-            version = "0.1.3.8"
+            version = "0.1.4"
         }
     }
 }

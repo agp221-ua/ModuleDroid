@@ -33,7 +33,7 @@ internal class MDActivityLifecycleCallbacks : Application.ActivityLifecycleCallb
         ActivityLifecycleSubscriptionManager.onPauseSuscriptions.forEach{it(p0)}
     }
 
-    override fun onActivityStopped(p0: Activity) {
+    override fun onActivityStopped(p0: Activity) {  //TODO revise because does not work correctly
         if(p0.isChangingConfigurations){
             ActivityLifecycleSubscriptionManager.onRestartSuscriptions.forEach{it(p0)}
         } else {

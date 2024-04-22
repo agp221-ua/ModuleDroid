@@ -1,5 +1,7 @@
 package software.galaniberico.moduledroid
 
+import android.app.Activity
+import android.os.Bundle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -28,6 +30,17 @@ class ActivityLifecycle {
     fun currentActivityOk() {
         activityRule.scenario.onActivity {
             assertEquals(it, Facade.getCurrentActivity())
+        }
+    }
+
+    @Test
+    fun currentActivityOk2() {
+        activityRule.scenario.onActivity {
+
+        Facade.addOnCreateSubscription { itt: Activity, _:Bundle? ->
+            assertEquals(it, Facade.getCurrentActivity())
+        }
+            Facade.startActivity(MainActivity2::class.java)
         }
     }
 

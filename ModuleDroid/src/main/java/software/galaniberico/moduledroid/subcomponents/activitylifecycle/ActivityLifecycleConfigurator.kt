@@ -11,5 +11,14 @@ internal object ActivityLifecycleConfigurator : AppConfigurator {
         InternalBus.set("CURRENT_ACTIVITY") {
             return@set ActivitiesData.currentActivity
         }
+        InternalBus.set("CREATING_ACTIVITY") {
+            return@set ActivitiesData.creatingActivity
+        }
+        InternalBus.set("START_ACTIVITY") {
+            return@set ActivitiesData.startingActivity
+        }
+        InternalBus.set("RESUMING_ACTIVITY") {
+            return@set ActivitiesData.resumingActivity
+        }
     }
 }

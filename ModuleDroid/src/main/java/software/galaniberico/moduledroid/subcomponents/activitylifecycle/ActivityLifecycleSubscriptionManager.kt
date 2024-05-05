@@ -8,21 +8,38 @@ import android.os.Bundle
  */
 internal object ActivityLifecycleSubscriptionManager {
 
+    internal val onPreCreateSuscriptions = mutableListOf<(Activity, Bundle?) -> Unit>()
     internal val onCreateSuscriptions = mutableListOf<(Activity, Bundle?) -> Unit>()
+    internal val onPostCreateSuscriptions = mutableListOf<(Activity, Bundle?) -> Unit>()
+
+    internal val onPreStartSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onStartSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onPostStartSuscriptions = mutableListOf<(Activity) -> Unit>()
+
+    internal val onPreResumeSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onResumeSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onPostResumeSuscriptions = mutableListOf<(Activity) -> Unit>()
+
+    internal val onPrePauseSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onPauseSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onPostPauseSuscriptions = mutableListOf<(Activity) -> Unit>()
+
+    internal val onPreStopSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onStopSuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onPostStopSuscriptions = mutableListOf<(Activity) -> Unit>()
+
+    internal val onPreDestroySuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onDestroySuscriptions = mutableListOf<(Activity) -> Unit>()
+    internal val onPostDestroySuscriptions = mutableListOf<(Activity) -> Unit>()
+
+
 
     internal val onRestartSuscriptions = mutableListOf<(Activity) -> Unit>()
-
-    internal val onStartSuscriptions = mutableListOf<(Activity) -> Unit>()
-
-    internal val onResumeSuscriptions = mutableListOf<(Activity) -> Unit>()
-
-    internal val onPauseSuscriptions = mutableListOf<(Activity) -> Unit>()
-
-    internal val onStopSuscriptions = mutableListOf<(Activity) -> Unit>()
-
-    internal val onDestroySuscriptions = mutableListOf<(Activity) -> Unit>()
-
     internal val onSaveInstanceStateSuscriptions = mutableListOf<(Activity, Bundle) -> Unit>()
+
+    fun addOnPreCreateSubscription(subscription: (Activity, Bundle?) -> Unit) {
+        onPreCreateSuscriptions.add(subscription)
+    }
 
     /**
      * Adds a subscription for the `onCreate` lifecycle event of an activity.
@@ -32,6 +49,11 @@ internal object ActivityLifecycleSubscriptionManager {
         onCreateSuscriptions.add(subscription)
     }
 
+    fun addOnPostCreateSubscription(subscription: (Activity, Bundle?) -> Unit) {
+        onPostCreateSuscriptions.add(subscription)
+    }
+
+
     /**
      * Adds a subscription for the `onRestart` lifecycle event of an activity.
      * @param subscription Lambda expression or function to be executed on `onRestart`.
@@ -40,12 +62,25 @@ internal object ActivityLifecycleSubscriptionManager {
         onRestartSuscriptions.add(subscription)
     }
 
+    fun addOnPreStartSubscription(subscription: (Activity) -> Unit) {
+        onPreStartSuscriptions.add(subscription)
+    }
+
+
     /**
      * Adds a subscription for the `onStart` lifecycle event of an activity.
      * @param subscription Lambda expression or function to be executed on `onStart`.
      */
     fun addOnStartSubscription(subscription: (Activity) -> Unit) {
         onStartSuscriptions.add(subscription)
+    }
+
+    fun addOnPostStartSubscription(subscription: (Activity) -> Unit) {
+        onPostStartSuscriptions.add(subscription)
+    }
+
+    fun addOnPreResumeSubscription(subscription: (Activity) -> Unit) {
+        onPreResumeSuscriptions.add(subscription)
     }
 
     /**
@@ -56,12 +91,28 @@ internal object ActivityLifecycleSubscriptionManager {
         onResumeSuscriptions.add(subscription)
     }
 
+    fun addOnPostResumeSubscription(subscription: (Activity) -> Unit) {
+        onPostResumeSuscriptions.add(subscription)
+    }
+
+    fun addOnPrePauseSubscription(subscription: (Activity) -> Unit) {
+        onPrePauseSuscriptions.add(subscription)
+    }
+
     /**
      * Adds a subscription for the `onPause` lifecycle event of an activity.
      * @param subscription Lambda expression or function to be executed on `onPause`.
      */
     fun addOnPauseSubscription(subscription: (Activity) -> Unit) {
         onPauseSuscriptions.add(subscription)
+    }
+
+    fun addOnPostPauseSubscription(subscription: (Activity) -> Unit) {
+        onPostPauseSuscriptions.add(subscription)
+    }
+
+    fun addOnPreStopSubscription(subscription: (Activity) -> Unit) {
+        onPreStopSuscriptions.add(subscription)
     }
 
     /**
@@ -72,12 +123,24 @@ internal object ActivityLifecycleSubscriptionManager {
         onStopSuscriptions.add(subscription)
     }
 
+    fun addOnPostStopSubscription(subscription: (Activity) -> Unit) {
+        onPostStopSuscriptions.add(subscription)
+    }
+
+    fun addOnPreDestroySubscription(subscription: (Activity) -> Unit) {
+        onPreDestroySuscriptions.add(subscription)
+    }
+
     /**
      * Adds a subscription for the `onDestroy` lifecycle event of an activity.
      * @param subscription Lambda expression or function to be executed on `onDestroy`.
      */
     fun addOnDestroySubscription(subscription: (Activity) -> Unit) {
         onDestroySuscriptions.add(subscription)
+    }
+
+    fun addOnPostDestroySubscription(subscription: (Activity) -> Unit) {
+        onPostDestroySuscriptions.add(subscription)
     }
 
     /**

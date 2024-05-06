@@ -6,6 +6,7 @@ import android.health.connect.datatypes.AppInfo
 import android.os.Bundle
 import android.text.TextUtils.split
 import software.galaniberico.moduledroid.subcomponents.activitylifecycle.ActivityLifecycleConfigurator
+import software.galaniberico.moduledroid.subcomponents.preferencesmanager.PreferencesManagerConfigurator
 import java.io.InvalidClassException
 
 /**
@@ -18,7 +19,8 @@ internal object ApplicationConfigurator {
      * *AppConfigurator* interface.
      */
     private val subcomponents: List<AppConfigurator> = listOf(
-        ActivityLifecycleConfigurator
+        ActivityLifecycleConfigurator,
+        PreferencesManagerConfigurator
     )
 
     /**

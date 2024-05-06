@@ -33,6 +33,7 @@ class IntentManager {
             id = Facade.startActivity(MainActivity2::class.java)
         }
 
+
         onView(withId(R.id.tvOk)).check(matches(withText(id)))
     }
 

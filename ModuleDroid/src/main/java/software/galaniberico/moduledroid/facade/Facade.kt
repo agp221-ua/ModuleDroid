@@ -2,8 +2,10 @@ package software.galaniberico.moduledroid.facade
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import software.galaniberico.moduledroid.subcomponents.intentmanager.LocalIntentManager
+import software.galaniberico.moduledroid.subcomponents.preferencesmanager.PreferencesManager
 
 object Facade {
 
@@ -48,6 +50,7 @@ object Facade {
     fun getResumingActivityOrFail(): Activity {
         return FacadeActivityLifecycle.getResumingActivityOrFail()
     }
+
     fun addOnRestartSubscription(subscription: (Activity) -> Unit) {
         FacadeActivityLifecycle.addOnRestartSubscription(subscription)
     }
@@ -127,6 +130,7 @@ object Facade {
     fun addOnSaveInstanceStateSubscription(subscription: (Activity, Bundle) -> Unit) {
         FacadeActivityLifecycle.addOnSaveInstanceStateSubscription(subscription)
     }
+
     fun addOnRestartSubscription(id: String, subscription: (Activity) -> Unit) {
         FacadeActivityLifecycle.addOnRestartSubscription(id, subscription)
     }
@@ -216,6 +220,7 @@ object Facade {
     ) {
         FacadeActivityLifecycle.addOnRestartSubscription(activityClass, subscription)
     }
+
     fun addOnCreateSubscription(
         activityClass: Class<out Activity>,
         subscription: (Activity, Bundle?) -> Unit
@@ -359,6 +364,7 @@ object Facade {
     ) {
         FacadeActivityLifecycle.addOnRestartSubscription(id, activityClass, subscription)
     }
+
     fun addOnCreateSubscription(
         id: String,
         activityClass: Class<out Activity>,
@@ -516,34 +522,126 @@ object Facade {
 
     // ### INTENT MANAGER ###
 
-    fun startActivity(target: Class<out Activity>, id: String? = null, preaction: (intent: Intent , id: String, internalId: String) -> Unit = {_,_,_ -> }): String {
+    fun startActivity(
+        target: Class<out Activity>,
+        id: String? = null,
+        preaction: (intent: Intent, id: String, internalId: String) -> Unit = { _, _, _ -> }
+    ): String {
         return FacadeIntentManager.startActivity(target, id, preaction)
     }
 
-    fun startActivityForResult(target: Class<out Activity>, requestCode: Int? = null, id: String? = null, preaction: (intent: Intent, id: String, internalId: String) -> Unit = {_,_,_ -> }): Pair<String, Int>{
+    fun startActivityForResult(
+        target: Class<out Activity>,
+        requestCode: Int? = null,
+        id: String? = null,
+        preaction: (intent: Intent, id: String, internalId: String) -> Unit = { _, _, _ -> }
+    ): Pair<String, Int> {
         return FacadeIntentManager.startActivityForResult(target, id, requestCode, preaction)
     }
 
-    fun startActivity(activity: Activity, target: Class<out Activity>, id: String? = null, preaction: (intent: Intent, id: String, internalId: String) -> Unit = {_,_,_ -> }): String {
+    fun startActivity(
+        activity: Activity,
+        target: Class<out Activity>,
+        id: String? = null,
+        preaction: (intent: Intent, id: String, internalId: String) -> Unit = { _, _, _ -> }
+    ): String {
         return FacadeIntentManager.startActivity(activity, target, id, preaction)
     }
 
-    fun startActivityForResult(activity: Activity, target: Class<out Activity>, requestCode: Int? = null, id: String? = null, preaction: (intent: Intent, id: String, internalId: String) -> Unit = {_,_,_ -> }): Pair<String, Int>{
-        return FacadeIntentManager.startActivityForResult(activity, target, id, requestCode, preaction)
+    fun startActivityForResult(
+        activity: Activity,
+        target: Class<out Activity>,
+        requestCode: Int? = null,
+        id: String? = null,
+        preaction: (intent: Intent, id: String, internalId: String) -> Unit = { _, _, _ -> }
+    ): Pair<String, Int> {
+        return FacadeIntentManager.startActivityForResult(
+            activity,
+            target,
+            id,
+            requestCode,
+            preaction
+        )
     }
 
-    fun provideId(activity: Activity) : String {
+    fun provideId(activity: Activity): String {
         return FacadeIntentManager.provideId(activity)
     }
 
-    fun getId(activity: Activity) : String? {
+    fun getId(activity: Activity): String? {
         return FacadeIntentManager.getId(activity)
     }
-    fun getInternalId(activity: Activity) : String {
+
+    fun getInternalId(activity: Activity): String {
         return FacadeIntentManager.getInternalId(activity)
     }
 
-    fun getIdOrProvideOne(activity: Activity) : String {
+    fun getIdOrProvideOne(activity: Activity): String {
         return FacadeIntentManager.getIdOrProvideOne(activity)
+    }
+
+    // ### PREFERENCES MANAGER ###
+
+    fun get(key: String, defaultValue: String): String {
+        return FacadePreferencesManager.get(key, defaultValue)
+    }
+
+    fun get(key: String, defaultValue: Int): Int {
+        return FacadePreferencesManager.get(key, defaultValue)
+    }
+
+    fun get(key: String, defaultValue: Long): Long {
+        return FacadePreferencesManager.get(key, defaultValue)
+    }
+
+    fun get(key: String, defaultValue: Float): Float {
+        return FacadePreferencesManager.get(key, defaultValue)
+    }
+
+    fun get(key: String, defaultValue: Boolean): Boolean {
+        return FacadePreferencesManager.get(key, defaultValue)
+    }
+
+    fun get(key: String, defaultValue: Set<String>): Set<String> {
+        return FacadePreferencesManager.get(key, defaultValue)
+    }
+
+    fun set(key: String, value: String) {
+        FacadePreferencesManager.set(key, value)
+    }
+
+    fun set(key: String, value: Int) {
+        FacadePreferencesManager.set(key, value)
+    }
+
+    fun set(key: String, value: Long) {
+        FacadePreferencesManager.set(key, value)
+    }
+
+    fun set(key: String, value: Float) {
+        FacadePreferencesManager.set(key, value)
+    }
+
+    fun set(key: String, value: Boolean) {
+        FacadePreferencesManager.set(key, value)
+    }
+
+    fun set(key: String, value: Set<String>) {
+        FacadePreferencesManager.set(key, value)
+    }
+
+    fun clear(){
+        FacadePreferencesManager.clear()
+    }
+    fun clearForce(){
+        FacadePreferencesManager.clearForce()
+    }
+
+    fun addSubscription(lambda:(SharedPreferences, String?) -> Unit){
+        FacadePreferencesManager.addSubscription(lambda)
+    }
+
+    fun removeSubscription(lambda:(SharedPreferences, String?) -> Unit){
+        FacadePreferencesManager.removeSubscription(lambda)
     }
 }
